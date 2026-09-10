@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NekoArcGames - Магазин видеоигр</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="Сайт1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <script src="Сайт1.js"></script>
+</head>
+<body>
+    <!--Шапка-->
+    <header>
+        <div class="logo-container" onclick="showPage('home')">
+            <img src="Картинки для сайта/Логотип.png" alt="NekoArcGames Logo" class="logo-img">
+            <span class="logo-text">NekoArcGames</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home'); return false;" class="active">Главная</a></li>
+                <li><a href="#" onclick="showPage('catalog'); return false;">Каталог</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Категории <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content" id="categories-dropdown">
+                        <!--Категории будут заполнены через JavaScript-->
+                    </div>
+                </li>
+                <li><a href="#" onclick="showPage('discounts'); return false;">Акции</a></li>
+                <li><a href="#" onclick="showPage('preorders'); return false;">Предзаказы</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Блок пользователя (заполняется через JS) -->
+            <div id="user-info" class="user-info">
+                <a href="auth.html" class="login-btn">
+                    <i class="fas fa-user"></i> Войти
+                </a>
+            </div>
+
+            <!-- Корзина -->
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                Корзина <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!--Главная страница-->
+    <div id="home" class="page active">
+        <!--Главный баннер-->
+        <section class="hero">
+            <h1>Лучшие видеоигры для всех платформ</h1>
+            <p>Покупайте самые популярные игры по лучшим ценам. Мгновенная доставка, постоянные акции и эксклюзивные предложения.</p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Поиск игр...">
+                <button onclick="searchGames()"><i class="fas fa-search"></i> Найти</button>
+            </div>
+        </section>
+
+        <!--Основной контент-->
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Популярные игры</h2>
+                <a href="#" onclick="showPage('catalog')" class="view-all">Смотреть все →</a>
+            </div>
+            <div class="games-grid" id="popular-games">
+                <!--Популярные игры будут добавляться через JavaScript-->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Скидки и акции</h2>
+                <a href="#" onclick="showPage('discounts')" class="view-all">Все акции →</a>
+            </div>
+            <div class="games-grid" id="discounted-games">
+                <!--Игры со скидками будут добавляться через JavaScript-->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Скоро выйдут</h2>
+                <a href="#" onclick="showPage('preorders')" class="view-all">Все предзаказы →</a>
+            </div>
+            <div class="games-grid" id="upcoming-games">
+                <!--Будущие игры будут добавляться через JavaScript-->
+            </div>
+        </div>
+    </div>
+
+    <!--Каталог-->
+    <div id="catalog" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="section-title">Каталог игр</h1>
+            </div>
+            <div class="games-grid" id="catalog-container">
+                <!--Все игры будут загружены через JavaScript-->
+            </div>
+        </div>
+    </div>
+
+    <!--Акции и скидки-->
+    <div id="discounts" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="section-title">Акции и скидки</h1>
+                <div class="sale-banner">
+                    <i class="fas fa-percentage sale-icon"></i>
+                    <span>Самые горячие предложения этой недели!</span>
+                </div>
+            </div>
+            <div class="games-grid" id="discounts-container">
+                <!--Игры со скидками будут загружены через JavaScript-->
+            </div>
+        </div>
+    </div>
+
+    <!--Предзаказы-->
+    <div id="preorders" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="section-title">Предзаказы</h1>
+                <div class="preorder-info">
+                    <i class="fas fa-calendar-alt preorder-icon"></i>
+                    <span>Забронируйте игру до выхода и получите бонусный контент!</span>
+                </div>
+            </div>
+            <div class="games-grid" id="preorders-container">
+                <!--Игры для предзаказа будут загружены через JavaScript-->
+            </div>
+        </div>
+    </div>
+
+    <!--Модальное окно корзины-->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-cart"></i> Ваша корзина</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <!--Товары корзины-->
+            </div>
+            
+            <div class="cart-total">
+                <span>Итого: </span>
+                <span class="total-amount" id="cart-total">0</span> ₽
+                <div class="discount-info" id="discount-info" style="display: none;">
+                    Экономия: <span id="discount-saved">0</span> ₽
+                </div>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="clear-cart-btn" onclick="clearCart()">
+                    <i class="fas fa-trash"></i> Очистить корзину
+                </button>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fas fa-credit-card"></i> Перейти к оплате
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--Модальное окно оплаты-->
+    <div id="paymentModal" class="payment-modal">
+        <div class="payment-content">
+            <div class="payment-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Оплата прошла успешно!</h2>
+            <p id="payment-message">Ваши игры будут доступны для скачивания в течение нескольких минут.</p>
+            <button class="back-btn" onclick="closePayment()" style="margin: 2rem auto 0;">
+                <i class="fas fa-home"></i> Вернуться на главную
+            </button>
+        </div>
+    </div>
+
+    <!--Футер-->
+    <footer>
+        <div class="copyright">
+            <p>&copy; 2025 NekoArcGames. Все права защищены.</p>
+            <a href="test.html">Тест сайта</a>
+        </div>
+    </footer>
+</body>
+</html>
